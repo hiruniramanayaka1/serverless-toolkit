@@ -1,3 +1,9 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 2 optimizations:
+# - [HIGH] Add npm dependency cache to "build" job
+# - [MEDIUM] Add concurrency group to "nodejs.yml"
+# Estimated savings: ~6 min/run
+#
 name: Node CI
 
 on:
@@ -10,6 +16,10 @@ on:
       - master
       - 'features/*'
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ${{ matrix.os }}
