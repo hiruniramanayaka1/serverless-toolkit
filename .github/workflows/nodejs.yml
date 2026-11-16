@@ -28,6 +28,12 @@ jobs:
       - name: Update npm to 8.x
         run: |
           npm i -g npm@8
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-modules-${{ matrix.node-version }}-${{ hashFiles('**/package.json', '**/package-lock.json') }}
       - name: npm install, build, and test
         run: |
           npm install
