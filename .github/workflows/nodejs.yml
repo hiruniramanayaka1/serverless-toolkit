@@ -1,6 +1,7 @@
 name: Node CI
 
 on:
+  workflow_dispatch:
   workflow_call:
   # This gets run by on-merge-main.yml automatically
   pull_request:
